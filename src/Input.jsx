@@ -6,10 +6,12 @@ const placeholderText = {
   address: '주소',
 };
 
-export default function Input({ name, value, onChange }) {
+export default function Input({
+  name, value, onChange,
+}) {
   function handleChange(event) {
     const { target } = event;
-    onChange(target.name, target.eventvalue);
+    onChange(target.name, target.value);
   }
 
   return (

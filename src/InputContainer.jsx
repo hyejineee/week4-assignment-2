@@ -1,13 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Input from './Input';
+
 import {
   addRestaurant,
   updateRestaurantField,
 } from './actions';
 
 export default function InputContainer() {
-  const { name, category, location } = useSelector((state) => ({
+  const { name, category, address } = useSelector((state) => ({
     name: state.name,
     category: state.category,
     address: state.address,
@@ -19,15 +21,17 @@ export default function InputContainer() {
     dispatch(addRestaurant());
   }
 
-  function handleChangeField(event) {
-    const { name, value } = event.target;
-    dispatch(updateRestaurantField(name, value));
+  function handleChangeField(fieldName, value) {
+    dispatch(updateRestaurantField(fieldName, value));
   }
+
   return (
     <div>
-      <input placeholder="이름" name="name" onChange={handleChangeName} value={name} />
-      <input placeholder="분류" name="category" onChange={handleChangeCategory} value={category} />
-      <input placeholder="주소" name="address" onChange={handleChangeLocation} value={location} />
+
+      <Input name="name" onChange={handleChangeField} value={name} />
+      <Input name="category" onChange={handleChangeField} value={category} />
+      <Input name="address" onChange={handleChangeField} value={address} />
+
       <button type="button" onClick={handleClickAddRestaurant}>
         등록
       </button>
