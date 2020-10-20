@@ -4,29 +4,12 @@ export function addRestaurant() {
   };
 }
 
-export function updateRestaurantName(name) {
+export function updateRestaurantField(name, value) {
   return {
-    type: 'updateRestaurantName',
+    type: 'updateRestaurantField',
     payload: {
       name,
-    },
-  };
-}
-
-export function updateRestaurantCategory(category) {
-  return {
-    type: 'updateRestaurantCategory',
-    payload: {
-      category,
-    },
-  };
-}
-
-export function updateRestaurantLocation(location) {
-  return {
-    type: 'updateRestaurantLocation',
-    payload: {
-      location,
+      value,
     },
   };
 }

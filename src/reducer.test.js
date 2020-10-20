@@ -2,7 +2,7 @@ import reducer from './reducer';
 
 import {
   addRestaurant,
-  updateRestaurant,
+  updateRestaurantField,
 } from './actions';
 
 describe('reducer', () => {
@@ -16,7 +16,8 @@ describe('reducer', () => {
   describe('addRestaurant', () => {
     it('add new restaurant into restaurants', () => {
       const state = reducer({
-        restautant: {
+        restaurant: {
+          newId: 100,
           name: '마녀주방',
           category: '한식',
           location: '서울시 강남구',
@@ -31,16 +32,17 @@ describe('reducer', () => {
     it('changes new restaurant name', () => {
       const state = reducer(
         {
-          restautant: {
+          restaurant: {
+            newId: 100,
             name: '마녀주방',
             category: '한식',
             location: '서울시 강남구',
           },
         },
-        updateRestaurantName('name', '김가네'),
+        updateRestaurantField('name', '김가네'),
       );
 
-      expect(state.restautant.name).toBe('김가네');
+      expect(state.restaurant.name).toBe('김가네');
     });
   });
 
@@ -54,10 +56,10 @@ describe('reducer', () => {
             location: '서울시 강남구',
           },
         },
-        updateRestaurantCategory('category', '분식'),
+        updateRestaurantField('category', '분식'),
       );
 
-      expect(state.restautant.category).toBe('분식');
+      expect(state.restaurant.category).toBe('분식');
     });
   });
 
@@ -68,13 +70,13 @@ describe('reducer', () => {
           restautant: {
             name: '마녀주방',
             category: '한식',
-            location: '서울시 강남구',
+            address: '서울시 강남구',
           },
         },
-        updateRestaurantLocation('address', '서울시 성북구'),
+        updateRestaurantField('address', '서울시 성북구'),
       );
 
-      expect(state.location).toBe('서울시 성북구');
+      expect(state.restaurant.address).toBe('서울시 성북구');
     });
   });
 });

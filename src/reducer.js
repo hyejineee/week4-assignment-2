@@ -1,43 +1,43 @@
 const initialState = {
-  name: '',
-  category: '',
-  location: '',
+  restaurant: {
+    newId: 100,
+    name: '',
+    category: '',
+    address: '',
+  },
   restaurants: [],
 };
 
 const addRestaurant = ({ state }) => {
   const {
-    name, category, location, restaurants,
+    restaurant, restaurants,
   } = state;
 
   return {
-    name: '',
-    category: '',
-    location: '',
-    restaurants: [...restaurants, { name, category, location }],
+    restaurant: {
+      newId: restaurant.newId + 1,
+      name: '',
+      category: '',
+      address: '',
+    },
+    restaurants: [...restaurants, restaurant],
   };
 };
 
-const updateRestaurantName = ({ state, payload }) => ({
-  ...state,
-  name: payload.name,
-});
-
-const updateRestaurantCategory = ({ state, payload }) => ({
-  ...state,
-  category: payload.category,
-});
-
-const updateRestaurantLocation = ({ state, payload }) => ({
-  ...state,
-  location: payload.location,
-});
+const updateRestaurantField = ({ state, payload: { name, value } }) => {
+  const { restaurant } = state;
+  return {
+    ...state,
+    restaurant: {
+      ...restaurant,
+      [name]: value,
+    },
+  };
+};
 
 const reducers = {
   addRestaurant,
-  updateRestaurantName,
-  updateRestaurantCategory,
-  updateRestaurantLocation,
+  updateRestaurantField,
 };
 
 export default function reducer(state = initialState, { type, payload }) {
