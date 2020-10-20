@@ -3,16 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   addRestaurant,
-  updateRestaurantCategory,
-  updateRestaurantLocation,
-  updateRestaurantName,
+  updateRestaurantField,
 } from './actions';
 
 export default function InputContainer() {
   const { name, category, location } = useSelector((state) => ({
     name: state.name,
     category: state.category,
-    location: state.location,
+    address: state.address,
   }));
 
   const dispatch = useDispatch();
@@ -22,7 +20,7 @@ export default function InputContainer() {
   }
 
   function handleChangeName(event) {
-    dispatch(updateRestaurantName(event.target.value));
+    dispatch(updateRestaurantField(event.target.value));
   }
 
   function handleChangeCategory(event) {

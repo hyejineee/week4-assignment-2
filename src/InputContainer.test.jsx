@@ -27,7 +27,7 @@ describe('InputContainer', () => {
     ));
   }
 
-  it('show aform for add restaurant\'s info', () => {
+  it('show a form for add restaurant\'s info', () => {
     const { getByPlaceholderText, getByText } = renderInputContainer();
 
     expect(getByPlaceholderText(/이름/)).not.toBeNull();
@@ -71,9 +71,10 @@ describe('InputContainer', () => {
     fireEvent.change(getByPlaceholderText(/이름/), { target: { value: name } });
 
     expect(dispatch).toBeCalledWith({
-      type: 'updateRestaurantName',
+      type: 'updateRestaurantField',
       payload: {
-        name,
+        name: 'name',
+        value: name,
       },
     });
   });
@@ -85,23 +86,25 @@ describe('InputContainer', () => {
     fireEvent.change(getByPlaceholderText(/분류/), { target: { value: category } });
 
     expect(dispatch).toBeCalledWith({
-      type: 'updateRestaurantCategory',
+      type: 'updateRestaurantField',
       payload: {
-        category,
+        name: 'category',
+        value: category,
       },
     });
   });
 
   it('change restrant location input', () => {
     const { getByPlaceholderText } = renderInputContainer();
-    const location = '서울시 성북구';
+    const address = '서울시 성북구';
 
-    fireEvent.change(getByPlaceholderText(/주소/), { target: { value: location } });
+    fireEvent.change(getByPlaceholderText(/주소/), { target: { value: address } });
 
     expect(dispatch).toBeCalledWith({
-      type: 'updateRestaurantLocation',
+      type: 'updateRestaurantField',
       payload: {
-        location,
+        name: 'address',
+        value: address,
       },
     });
   });
