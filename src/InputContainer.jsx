@@ -19,18 +19,10 @@ export default function InputContainer() {
     dispatch(addRestaurant());
   }
 
-  function handleChangeName(event) {
-    dispatch(updateRestaurantField(event.target.value));
+  function handleChangeField(event) {
+    const { name, value } = event.target;
+    dispatch(updateRestaurantField(name, value));
   }
-
-  function handleChangeCategory(event) {
-    dispatch(updateRestaurantCategory(event.target.value));
-  }
-
-  function handleChangeLocation(event) {
-    dispatch(updateRestaurantLocation(event.target.value));
-  }
-
   return (
     <div>
       <input placeholder="이름" name="name" onChange={handleChangeName} value={name} />
